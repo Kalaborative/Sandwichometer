@@ -55,12 +55,6 @@ def validity_checker():
     global selmeat
     global selmodifier
     global selstyle
-    global sandwiches
-    global styles
-    global veggies
-    global condiments
-    global meats
-    global breads
     while not valid:
         valid_sandwich = False
         while not valid_sandwich:  
@@ -111,6 +105,53 @@ def validity_checker():
                         valid = True
                 if selmodifier == "extra":
                     if selmeat not in ["cheese", "salami", "capicola", "tuna"]:
+                        selmeat = choice(meats)
+                        valid = False
+                    else:
+                        valid = True
+                if valid:
+                    break
+            elif selsandwich == "#3 Totally Tuna":
+                if selbread in ["Unwich", "wheat bread"]:
+                    if selstyle != "cut in half":
+                        selstyle = choice(styles)
+                        valid = False
+                    else:
+                        valid = True
+                if selstyle == "TBO":
+                    selstyle = choice(styles)
+                    valid = False
+                else:
+                    valid = True
+                if selveggie == sel2veggie:
+                    selveggie = choice(veggies)
+                    sel2veggie = choice(veggies)
+                    valid = False
+                else:
+                    valid = True
+                if selmodifier == "add":
+                    if selveggie in ["lettuce", "tomatoes", "cucumbers"]:
+                        selveggie = choice(veggies)
+                        valid = False
+                    elif sel2veggie in ["lettuce", "tomatoes", "cucumbers"]:
+                        sel2veggie = choice(veggies)
+                        valid = False    
+                    elif selmeat == "cheese":
+                        selmeat = choice(meats)
+                        valid = False
+                    else:
+                        valid = True
+                if selmodifier == "no":
+                    if selveggie not in ["lettuce", "tomatoes", "cucumbers"]:
+                        selveggie = choice(veggies)
+                        valid = False
+                    elif sel2veggie not in ["lettuce", "tomatoes", "cucumbers"]:
+                        sel2veggie = choice(veggies)
+                        valid = False
+                    else:
+                        valid = True
+                if selmodifier == "extra":
+                    if selmeat != "tuna":
                         selmeat = choice(meats)
                         valid = False
                     else:
