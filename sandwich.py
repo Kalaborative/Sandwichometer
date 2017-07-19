@@ -36,7 +36,7 @@ def new_order():
     global selmeat
     global selmodifier
     global selstyle
-    selsandwich = "#1 Pepe"
+    selsandwich = choice(sandwiches)
     selbread = choice(breads)
     selcondiment = choice(condiments)
     selveggie = choice(veggies)
@@ -55,66 +55,75 @@ def validity_checker():
     global selmeat
     global selmodifier
     global selstyle
+    global sandwiches
+    global styles
+    global veggies
+    global condiments
+    global meats
+    global breads
     while not valid:
-        if selsandwich == "#1 Pepe":
-            if selbread in ["Unwich", "wheat bread"]:
-                if selstyle != "cut in half":
+        valid_sandwich = False
+        while not valid_sandwich:  
+            if selsandwich in ["#1 Pepe", "#2 Big John", "#4 Turkey Tom"]:
+                if selbread in ["Unwich", "wheat bread"]:
+                    if selstyle != "cut in half":
+                        selstyle = choice(styles)
+                        valid = False
+                    else:
+                        valid = True
+                if selstyle == "TBO":
                     selstyle = choice(styles)
                     valid = False
                 else:
                     valid = True
-            if selstyle == "TBO":
-                selstyle = choice(styles)
-                valid = False
-            else:
-                valid = True
-            if selveggie == sel2veggie:
-                selveggie = choice(veggies)
-                sel2veggie = choice(veggies)
-                valid = False
-            else:
-                valid = True
-            if selmodifier == "add":
-                if selcondiment == "mayo":
-                    selcondiment = choice(condiments)
-                    valid = False
-                elif selveggie in ["lettuce", "tomatoes"]:
+                if selveggie == sel2veggie:
                     selveggie = choice(veggies)
-                    valid = False
-                elif sel2veggie in ["lettuce", "tomatoes"]:
-                    sel2veggie = choice(veggies)
-                    valid = False
-                elif selmeat not in ["salami", "capicola", "tuna"]:
-                    selmeat = choice(meats)
-                    valid = False
-                else:
-                    valid = True
-            if selmodifier == "no":
-                if selcondiment != "mayo":
-                    selcondiment = choice(condiments)
-                    valid = False
-                elif selveggie not in ["lettuce", "tomatoes"]:
-                    selveggie = choice(veggies)
-                    valid = False
-                elif sel2veggie not in ["lettuce", "tomatoes"]:
                     sel2veggie = choice(veggies)
                     valid = False
                 else:
                     valid = True
-            if selmodifier == "extra":
-                if selmeat not in ["cheese", "salami", "capicola", "tuna"]:
-                    selmeat = choice(meats)
-                    valid = False
-                else:
-                    valid = True
-            if valid:
-                break
-
+                if selmodifier == "add":
+                    if selcondiment == "mayo":
+                        selcondiment = choice(condiments)
+                        valid = False
+                    elif selveggie in ["lettuce", "tomatoes"]:
+                        selveggie = choice(veggies)
+                        valid = False
+                    elif sel2veggie in ["lettuce", "tomatoes"]:
+                        sel2veggie = choice(veggies)
+                        valid = False
+                    elif selmeat not in ["salami", "capicola", "tuna"]:
+                        selmeat = choice(meats)
+                        valid = False
+                    else:
+                        valid = True
+                if selmodifier == "no":
+                    if selcondiment != "mayo":
+                        selcondiment = choice(condiments)
+                        valid = False
+                    elif selveggie not in ["lettuce", "tomatoes"]:
+                        selveggie = choice(veggies)
+                        valid = False
+                    elif sel2veggie not in ["lettuce", "tomatoes"]:
+                        sel2veggie = choice(veggies)
+                        valid = False
+                    else:
+                        valid = True
+                if selmodifier == "extra":
+                    if selmeat not in ["cheese", "salami", "capicola", "tuna"]:
+                        selmeat = choice(meats)
+                        valid = False
+                    else:
+                        valid = True
+                if valid:
+                    break
+            else:
+                selsandwich = choice(sandwiches)
 i = 0
 while i < 5:
     new_order()
     validity_checker()
-    offer1 = "Order a %s %s %s %s." % (selsandwich, selmodifier, selveggie, selstyle)
+    offer1 = "Try a %s %s %s %s." % (selsandwich, selmodifier, selveggie, selstyle)
     print offer1
     new_order()
     validity_checker()
