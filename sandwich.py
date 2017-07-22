@@ -37,7 +37,7 @@ def new_order():
     global selmeat
     global selmodifier
     global selstyle
-    selsandwich = choice(["#1 Pepe", "#2 Big John", "#4 Turkey Tom", "#5 Vito", "#6 Veggie Sub"])
+    selsandwich = choice(sandwiches[:6])
     selbread = choice(breads)
     selcondiment = choice(condiments)
     selveggie = choice(veggies)
@@ -222,12 +222,68 @@ def validate_veggiesub():
         else:
             valid = True
 
+def validate_tuna():
+    valid = False
+    global selsandwich
+    global selbread
+    global selcondiment
+    global selveggie
+    global selmeat
+    global selmodifier
+    global selstyle
+    print "Found a %s." % selsandwich
+    sleep(1)
+    while not valid:
+        if selbread == "French bread" and selstyle == "TBO":
+            selstyle = choice(styles)
+            valid = False
+        else:
+            valid = True
+        if selbread != "French bread" and selstyle != "cut in half":
+            selstyle = choice(styles)
+            valid = False
+        else:
+            valid = True
+        if selmodifier == "add":
+            print "Add %s?" % selcondiment
+            sleep(1)
+        elif selmodifier == "no":
+            print "No %s?" % selcondiment
+            sleep(1)
+            if selcondiment:
+                print "Switching to 'add' %s..." % selcondiment
+                sleep(1)
+                selmodifier = "add"
+                valid = False
+        else:
+            valid = True
+        if selmodifier == "add":
+            print "Add %s?" % selveggie
+            sleep(1)
+            if selveggie in ["lettuce", "tomatoes", "cucumbers"]:
+                print "Changing veggies..."
+                sleep(1)
+                selveggie = choice(veggies)
+                valid = False
+        elif selmodifier == "no":
+            print "No %s?" % selveggie
+            sleep(1)
+            if selveggie not in ["lettuce", "tomatoes", "cucumbers"]:
+                print "Changing veggie..."
+                sleep(1)
+                selveggie = choice(veggies)
+                valid = False
+        else:
+            valid = True
+
 
 i = 0
 while i < 5:
     new_order()
     if selsandwich in ["#1 Pepe", "#2 Big John", "#4 Turkey Tom"]:
         validate_pepe()
+    if selsandwich == "#3 Totally Tuna":
+        validate_tuna()
     if selsandwich == "#5 Vito":
         validate_vito()
     if selsandwich == "#6 Veggie Sub":

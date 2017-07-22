@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sandwichometer</title>
+    <link rel="stylesheet prefetch" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+</head>
+<body>
+    <div class='button'>
+  <h1>Sandwichometer</h1>
+  <h2>Generate a random sandwich. Just click the button!</h2>
+  <input id='button' type='checkbox'>
+  <label for='button'>
+    <div class='button_inner q'>
+      <i class='l ion-log-in'></i>
+      <span class='t'>Get your sandwich!</span>
+      <span>
+        <i class='tick ion-checkmark-round'></i>
+      </span>
+      <div class='b_l_quad'>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+      </div>
+    </div>
+  </label>
+</div>
+<main class="scene">
+  <div class="actor">
+    <div id="jjbot" class="actor__content"></div>
+  </div>
+</main>
+<script type="text/javascript" src="//cdn.jsdelivr.net/theaterjs/latest/theater.min.js"></script>
+<script type="text/javascript">
+  var theater = theaterJS({ 'autoplay': false })
+  
+theater
+  .on('type:start, erase:start', function () {
+    // add a class to actor's dom element when he starts typing/erasing
+    var actor = theater.getCurrentActor()
+    actor.$element.classList.add('actor__content--typing')
+  })
+  .on('type:end, erase:end', function () {
+    // and then remove it when he's done
+    var actor = theater.getCurrentActor()
+    actor.$element.classList.remove('actor__content--typing')
+  })
+
+theater
+  .addActor('jjbot', { 'speed': 0.8, 'accuracy': 0.5 })
+  
+theater
+  .addScene('jjbot:This is a test to see what happens.', 400)
+
+document.querySelector('.button').addEventListener('click', function () {
+  setTimeout(function(){theater.play();}, 5000);
+}, false)
+</script>
+</body>
+</html>
