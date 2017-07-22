@@ -3,6 +3,7 @@
 <head>
     <title>Sandwichometer</title>
     <link rel="stylesheet prefetch" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="static/css/style.css">
 </head>
 <body>
@@ -79,10 +80,15 @@
     <div id="jjbot" class="actor__content"></div>
   </div>
 </main>
+<a href="#" class="action-button shadow animate green">Reset</a>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/theaterjs/latest/theater.min.js"></script>
 <script type="text/javascript">
   var theater = theaterJS({ 'autoplay': false })
-  
+  var myOffers = [{% for o in offers %}"{{ o }}",{% endfor %}];
+  var rand = myOffers[Math.floor(Math.random() * myOffers.length)];
+  var rand2 = myOffers[Math.floor(Math.random() * myOffers.length)];
+  var rand3 = myOffers[Math.floor(Math.random() * myOffers.length)];
 theater
   .on('type:start, erase:start', function () {
     // add a class to actor's dom element when he starts typing/erasing
@@ -93,17 +99,36 @@ theater
     // and then remove it when he's done
     var actor = theater.getCurrentActor()
     actor.$element.classList.remove('actor__content--typing')
+    theater.stop()
   })
 
 theater
-  .addActor('jjbot', { 'speed': 0.8, 'accuracy': 0.5 })
+  .addActor('jjbot', { 'speed': 0.9, 'accuracy': 0.5 })
   
 theater
-  .addScene('jjbot:This is a test to see what happens.', 400)
+  .addScene('jjbot:' + rand, 500)
+  .addScene('jjbot:' + rand2, 500)
+  .addScene('jjbot:' + rand3, 500)
 
-document.querySelector('.button').addEventListener('click', function () {
-  setTimeout(function(){theater.play();}, 5000);
-}, false)
+//document.querySelector('.button').addEventListener('click', function () {
+  //setTimeout(function(){theater.play();}, 5000);
+//}, false)
+
+$(document).ready(function(){
+  $('div').click(function(){
+    $('div').toggleClass('clicked');
+    setTimeout(function(){
+      theater.play();
+      //$('input').prop('checked', false);
+    }, 6000);
+    setTimeout(function(){
+      $('a').fadeIn('fast');
+    }, 6000);
+  });
+  $('a').click(function(){
+    theater.play();
+  });
+});
 </script>
 </body>
 </html>
