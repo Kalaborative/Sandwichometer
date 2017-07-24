@@ -37,7 +37,7 @@ def new_order():
     global selmeat
     global selmodifier
     global selstyle
-    selsandwich = choice(sandwiches[:6])
+    selsandwich = choice(sandwiches[:19])
     selbread = choice(breads)
     selcondiment = choice(condiments)
     selveggie = choice(veggies)
@@ -276,11 +276,298 @@ def validate_tuna():
         else:
             valid = True
 
+def validate_smokedham():
+    valid = False
+    global selsandwich
+    global selbread
+    global selcondiment
+    global selveggie
+    global selmeat
+    global selmodifier
+    global selstyle
+    print "Found a %s." % selsandwich
+    sleep(1)
+    while not valid:
+        if selbread == "French bread" and selstyle == "LBI":
+            selstyle = choice(styles)
+            valid = False
+        else:
+            valid = True
+        if selbread != "French bread" and selstyle != "cut in half":
+            selstyle = choice(styles)
+            valid = False
+        else:
+            valid = True
+        if selmodifier == "add":
+            print "Add %s?" % selcondiment
+            sleep(1)
+            if selcondiment == "mayo":
+                print "Changing condiment..."
+                sleep(1)
+                selcondiment = choice(condiments)
+                valid = False
+        elif selmodifier == "no":
+            print "No %s?" % selcondiment
+            sleep(1)
+            if selcondiment != "mayo":
+                print "Changing condiment.."
+                sleep(1)
+                selcondiment = choice(condiments)
+                valid = False
+        else:
+            valid = True
+        if selmodifier == "add":
+            print "Add %s?" % selveggie
+            sleep(1)
+            if selveggie in ["lettuce", "tomatoes"]:
+                print "Changing veggies..."
+                sleep(1)
+                selveggie = choice(veggies)
+                valid = False
+        elif selmodifier == "no":
+            print "No %s?" % selveggie
+            sleep(1)
+            if selveggie not in ["lettuce", "tomatoes"]:
+                print "Changing veggie..."
+                sleep(1)
+                selveggie = choice(veggies)
+                valid = False
+        else:
+            valid = True
 
-i = 0
-while i < 5:
-    new_order()
-    if selsandwich in ["#1 Pepe", "#2 Big John", "#4 Turkey Tom"]:
+def validate_billy():
+    valid = False
+    global selsandwich
+    global selbread
+    global selcondiment
+    global selveggie
+    global selmeat
+    global selmodifier
+    global selstyle
+    print "Found a %s." % selsandwich
+    sleep(1)
+    while not valid:
+        if selbread == "French bread" and selstyle == "LBI":
+            selstyle = choice(styles)
+            valid = False
+        else:
+            valid = True
+        if selbread != "French bread" and selstyle != "cut in half":
+            selstyle = choice(styles)
+            valid = False
+        else:
+            valid = True
+        if selmodifier == "add":
+            print "Add %s?" % selcondiment
+            sleep(1)
+            if selcondiment in ["mayo", "dijon mustard"]:
+                print "Changing condiment..."
+                sleep(1)
+                selcondiment = choice(condiments)
+                valid = False
+        elif selmodifier == "no":
+            print "No %s?" % selcondiment
+            sleep(1)
+            if selcondiment not in ["mayo", "dijon mustard"]:
+                print "Changing condiment.."
+                sleep(1)
+                selcondiment = choice(condiments)
+                valid = False
+        else:
+            valid = True
+        if selmodifier == "add":
+            print "Add %s?" % selveggie
+            sleep(1)
+            if selveggie in ["lettuce", "tomatoes"]:
+                print "Changing veggies..."
+                sleep(1)
+                selveggie = choice(veggies)
+                valid = False
+        elif selmodifier == "no":
+            print "No %s?" % selveggie
+            sleep(1)
+            if selveggie not in ["lettuce", "tomatoes"]:
+                print "Changing veggie..."
+                sleep(1)
+                selveggie = choice(veggies)
+                valid = False
+        else:
+            valid = True
+
+def validate_italianclub():
+    valid = False
+    global selsandwich
+    global selbread
+    global selcondiment
+    global selveggie
+    global selmeat
+    global selmodifier
+    global selstyle
+    print "Found a %s." % selsandwich
+    sleep(1)
+    while not valid:
+        if selbread == "French bread" and selstyle == "LBI":
+            selstyle = choice(styles)
+            valid = False
+        else:
+            valid = True
+        if selbread != "French bread" and selstyle != "cut in half":
+            selstyle = choice(styles)
+            valid = False
+        else:
+            valid = True
+        if selmodifier == "add":
+            print "Add %s?" % selcondiment
+            sleep(1)
+            if selcondiment in ["mayo", "oil vinaigrette"]:
+                print "Changing condiment..."
+                sleep(1)
+                selcondiment = choice(condiments)
+                valid = False
+        elif selmodifier == "no":
+            print "No %s?" % selcondiment
+            sleep(1)
+            if selcondiment not in ["mayo", "oil vinaigrette"]:
+                print "Changing condiment.."
+                sleep(1)
+                selcondiment = choice(condiments)
+                valid = False
+        else:
+            valid = True
+        if selmodifier == "add":
+            print "Add %s?" % selveggie
+            sleep(1)
+            if selveggie not in ["cherry peppers", "cucumbers"]:
+                print "Changing veggies..."
+                sleep(1)
+                selveggie = choice(veggies)
+                valid = False
+        elif selmodifier == "no":
+            print "No %s?" % selveggie
+            sleep(1)
+            if selveggie in ["cherry peppers", "cucumbers"]:
+                print "Changing veggies..."
+                sleep(1)
+                selveggie = choice(veggies)
+                valid = False
+        else:
+            valid = True
+
+def validate_beachclub():
+    valid = False
+    global selsandwich
+    global selbread
+    global selcondiment
+    global selveggie
+    global selmeat
+    global selmodifier
+    global selstyle
+    print "Found a %s." % selsandwich
+    sleep(1)
+    while not valid:
+        if selbread == "French bread" and selstyle == "LBI":
+            selstyle = choice(styles)
+            valid = False
+        else:
+            valid = True
+        if selbread != "French bread" and selstyle != "cut in half":
+            selstyle = choice(styles)
+            valid = False
+        else:
+            valid = True
+        if selmodifier == "add":
+            print "Add %s?" % selcondiment
+            sleep(1)
+            if selcondiment in ["mayo", "avocado spread"]:
+                print "Changing condiment..."
+                sleep(1)
+                selcondiment = choice(condiments)
+                valid = False
+        elif selmodifier == "no":
+            print "No %s?" % selcondiment
+            sleep(1)
+            if selcondiment not in  ["mayo", "avocado spread"]:
+                print "Changing condiment.."
+                sleep(1)
+                selcondiment = choice(condiments)
+                valid = False
+        else:
+            valid = True
+        if selmodifier == "add":
+            print "Add %s?" % selveggie
+            sleep(1)
+            if selveggie in ["lettuce", "tomatoes", "cucumbers"]:
+                print "Changing veggies..."
+                sleep(1)
+                selveggie = choice(veggies)
+                valid = False
+        elif selmodifier == "no":
+            print "No %s?" % selveggie
+            sleep(1)
+            if selveggie not in ["lettuce", "tomatoes", "cucumbers"]:
+                print "Changing veggies..."
+                sleep(1)
+                selveggie = choice(veggies)
+                valid = False
+        else:
+            valid = True
+
+def validate_clubtuna():
+    valid = False
+    global selsandwich
+    global selbread
+    global selcondiment
+    global selveggie
+    global selmeat
+    global selmodifier
+    global selstyle
+    print "Found a %s." % selsandwich
+    sleep(1)
+    while not valid:
+        if selbread == "French bread" and selstyle == "LBI":
+            selstyle = choice(styles)
+            valid = False
+        else:
+            valid = True
+        if selbread != "French bread" and selstyle != "cut in half":
+            selstyle = choice(styles)
+            valid = False
+        else:
+            valid = True
+        if selmodifier == "add":
+            print "Add %s?" % selcondiment
+            sleep(1)
+        elif selmodifier == "no":
+            print "No %s?" % selcondiment
+            sleep(1)
+            if selcondiment:
+                print "Switching modifier to 'add' %s..." % selcondiment
+                sleep(1)
+                selmodifier = "add"
+                valid = False
+        else:
+            valid = True
+        if selmodifier == "add":
+            print "Add %s?" % selveggie
+            sleep(1)
+            if selveggie in ["lettuce", "tomatoes", "cucumbers"]:
+                print "Changing veggies..."
+                sleep(1)
+                selveggie = choice(veggies)
+                valid = False
+        elif selmodifier == "no":
+            print "No %s?" % selveggie
+            sleep(1)
+            if selveggie not in ["lettuce", "tomatoes", "cucumbers"]:
+                print "Changing veggies..."
+                sleep(1)
+                selveggie = choice(veggies)
+                valid = False
+        else:
+            valid = True
+
+def validity_checker():
+    if selsandwich in ["#1 Pepe", "#2 Big John", "#4 Turkey Tom", "JJ BLT"]:
         validate_pepe()
     if selsandwich == "#3 Totally Tuna":
         validate_tuna()
@@ -288,8 +575,27 @@ while i < 5:
         validate_vito()
     if selsandwich == "#6 Veggie Sub":
         validate_veggiesub()
+    if selsandwich in ["#7 Smoked Ham Club", "#10 Hunters Club", "#11 Country Club", "#14 Bootlegger Club", "#16 Club Lulu", "#17 Ultimate Porker"]:
+        validate_smokedham()
+    if selsandwich == "#8 Billy Club":
+        validate_billy()
+    if selsandwich in ["#9 Italian Night Club", "JJ Gargantuan"]:
+        validate_italianclub()
+    if selsandwich in ["#12 Beach Club", "#13 Veggie Club"]:
+        validate_beachclub()
+    if selsandwich == "#15 Club Tuna":
+        validate_clubtuna()
+
+i = 0
+while i < 5:
+    new_order()
+    validity_checker()
     offer1 = "Try a %s %s %s %s." % (selsandwich, selmodifier, selveggie, selstyle)
     print offer1
+    new_order()
+    validity_checker()
+    offer2 = "Try a %s %s %s on %s." % (selsandwich, selmodifier, selveggie, selbread)
+    print offer2
     # validity_checker()
     # offer1 = "Try a %s %s %s %s." % (selsandwich, selmodifier, selveggie, selstyle)
     # print offer1

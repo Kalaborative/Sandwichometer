@@ -14,7 +14,7 @@
   <label for='button'>
     <div class='button_inner q'>
       <i class='l ion-log-in'></i>
-      <span class='t'>Get your sandwich!</span>
+      <span class='t'>Load sandwiches!</span>
       <span>
         <i class='tick ion-checkmark-round'></i>
       </span>
@@ -80,35 +80,52 @@
     <div id="jjbot" class="actor__content"></div>
   </div>
 </main>
-<a href="#" class="action-button shadow animate green">Reset</a>
+<a href="#" id="getSandwich" class="action-button shadow animate green">Get my sandwich!</a>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/theaterjs/latest/theater.min.js"></script>
 <script type="text/javascript">
-  var theater = theaterJS({ 'autoplay': false })
+  var theater = theaterJS({ 'autoplay': false, 'erase': false })
   var myOffers = [{% for o in offers %}"{{ o }}",{% endfor %}];
   var rand = myOffers[Math.floor(Math.random() * myOffers.length)];
   var rand2 = myOffers[Math.floor(Math.random() * myOffers.length)];
   var rand3 = myOffers[Math.floor(Math.random() * myOffers.length)];
+
+var resetButton = window.document.getElementById('getSandwich');
+
 theater
   .on('type:start, erase:start', function () {
     // add a class to actor's dom element when he starts typing/erasing
     var actor = theater.getCurrentActor()
+    resetButton.style.visibility = 'hidden';
     actor.$element.classList.add('actor__content--typing')
   })
   .on('type:end, erase:end', function () {
     // and then remove it when he's done
     var actor = theater.getCurrentActor()
     actor.$element.classList.remove('actor__content--typing')
-    theater.stop()
+    resetButton.style.visibility = 'visible';
   })
 
 theater
   .addActor('jjbot', { 'speed': 0.9, 'accuracy': 0.5 })
-  
-theater
-  .addScene('jjbot:' + rand, 500)
-  .addScene('jjbot:' + rand2, 500)
-  .addScene('jjbot:' + rand3, 500)
+
+function playNextScene(){
+  theater.play().stop();
+}
+
+while (myOffers.length){
+  var randomIndex = Math.floor(Math.random() * myOffers.length)
+  var randOffer = myOffers.splice(randomIndex, 1);
+  // var randOffer = myOffers[Math.floor(Math.random() * myOffers.length)];
+  theater.addScene('jjbot:' + randOffer);
+}
+
+theater.addScene(theater.replay);
+
+//theater
+  //.addScene('jjbot:' + rand, 500)
+  //.addScene('jjbot:' + rand2, 500)
+  //.addScene('jjbot:' + rand3, 500)
 
 //document.querySelector('.button').addEventListener('click', function () {
   //setTimeout(function(){theater.play();}, 5000);
@@ -118,15 +135,13 @@ $(document).ready(function(){
   $('div').click(function(){
     $('div').toggleClass('clicked');
     setTimeout(function(){
-      theater.play();
+      $('div.button_inner').fadeOut('slow');
+      $('a').fadeIn('slow');
       //$('input').prop('checked', false);
-    }, 6000);
-    setTimeout(function(){
-      $('a').fadeIn('fast');
     }, 6000);
   });
   $('a').click(function(){
-    theater.play();
+    playNextScene();
   });
 });
 </script>
