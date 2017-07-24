@@ -592,15 +592,17 @@ while i < 5:
     validity_checker()
     offer1 = "Try a %s %s %s %s." % (selsandwich, selmodifier, selveggie, selstyle)
     print offer1
+    if selsandwich in sandwiches[:7]:
+        price = 6.05
+    elif selsandwich == "JJ Gargantuan":
+        price = 9.85
+    else:
+        price = 7.65
+    print "Price: $%s" % price
     new_order()
     validity_checker()
     offer2 = "Try a %s %s %s on %s." % (selsandwich, selmodifier, selveggie, selbread)
     print offer2
-    # validity_checker()
-    # offer1 = "Try a %s %s %s %s." % (selsandwich, selmodifier, selveggie, selstyle)
-    # print offer1
-    # offer2 = "Order a %s %s %s and %s on %s." % (selsandwich, selmodifier, selveggie, sel2veggie, selbread)
-    # print offer2
     # offer3 = "How about a %s %s %s %s %s?" % (selsandwich, selmodifier, selveggie, sel2modifier, selcondiment)
     # print offer3
     i += 1

@@ -437,11 +437,25 @@ while i < 25:
     new_order()
     validity_checker()
     offer1 = "Try a %s %s %s %s." % (selsandwich, selmodifier, selveggie, selstyle)
-    orders.append(offer1)
+    if selsandwich in sandwiches[:7]:
+        price1 = 6.05
+    elif selsandwich == "JJ Gargantuan":
+        price1 = 9.85
+    else:
+        price1 = 7.65
+    order1 = [offer1, str(price1)]
+    orders.append(order1)
     new_order()
     validity_checker()
     offer2 = "Try a %s %s %s on %s." % (selsandwich, selmodifier, selveggie, selbread)
-    orders.append(offer2)
+    if selsandwich in sandwiches[:7]:
+        price2 = 6.05
+    elif selsandwich == "JJ Gargantuan":
+        price2 = 9.85
+    else:
+        price2 = 7.65
+    order2 = [offer2, str(price2)]
+    orders.append(order2)
     i += 1
 
 app = Flask(__name__)

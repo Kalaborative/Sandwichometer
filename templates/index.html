@@ -85,10 +85,8 @@
 <script type="text/javascript" src="//cdn.jsdelivr.net/theaterjs/latest/theater.min.js"></script>
 <script type="text/javascript">
   var theater = theaterJS({ 'autoplay': false, 'erase': false })
-  var myOffers = [{% for o in offers %}"{{ o }}",{% endfor %}];
-  var rand = myOffers[Math.floor(Math.random() * myOffers.length)];
-  var rand2 = myOffers[Math.floor(Math.random() * myOffers.length)];
-  var rand3 = myOffers[Math.floor(Math.random() * myOffers.length)];
+  var myOffers = [{% for o in offers %}"{{ o[0] }}",{% endfor %}];
+  var myPrices = [{% for o in offers %}"{{ o[1] }}", {% endfor %}];
 
 var resetButton = window.document.getElementById('getSandwich');
 
@@ -114,10 +112,11 @@ function playNextScene(){
 }
 
 while (myOffers.length){
-  var randomIndex = Math.floor(Math.random() * myOffers.length)
+  var randomIndex = Math.floor(Math.random() * myOffers.length);
+
   var randOffer = myOffers.splice(randomIndex, 1);
-  // var randOffer = myOffers[Math.floor(Math.random() * myOffers.length)];
-  theater.addScene('jjbot:' + randOffer);
+  var randPrice = myPrices.splice(randomIndex, 1);
+  theater.addScene('jjbot:' + randOffer + " — Price: $" + randPrice);
 }
 
 theater.addScene(theater.replay);
