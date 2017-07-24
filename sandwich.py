@@ -36,13 +36,16 @@ def new_order():
     global selveggie
     global selmeat
     global selmodifier
+    global sel2modifier
     global selstyle
-    selsandwich = choice(sandwiches[:19])
+    # selsandwich = choice(sandwiches[:19])
+    selsandwich = "#6 Veggie Sub"
     selbread = choice(breads)
     selcondiment = choice(condiments)
     selveggie = choice(veggies)
     selmeat = choice(meats)
     selmodifier = choice(modifiers)
+    sel2modifier = choice(modifiers)
     selstyle = choice(styles)
 
 def validate_pepe():
@@ -53,6 +56,7 @@ def validate_pepe():
     global selveggie
     global selmeat
     global selmodifier
+    global sel2modifier
     global selstyle
     print "Found a %s." % selsandwich
     sleep(1)
@@ -65,24 +69,6 @@ def validate_pepe():
         if selbread != "French bread" and selstyle != "cut in half":
             selstyle = choice(styles)
             valid = False
-        else:
-            valid = True
-        if selmodifier == "add":
-            print "Add %s?" % selcondiment
-            sleep(1)
-            if selcondiment == "mayo":
-                print "Changing condiment..."
-                sleep(1)
-                selcondiment = choice(condiments)
-                valid = False
-        elif selmodifier == "no":
-            print "No %s?" % selcondiment
-            sleep(1)
-            if selcondiment != "mayo":
-                print "Changing condiment.."
-                sleep(1)
-                selcondiment = choice(condiments)
-                valid = False
         else:
             valid = True
         if selmodifier == "add":
@@ -103,6 +89,24 @@ def validate_pepe():
                 valid = False
         else:
             valid = True
+        if sel2modifier == "add":
+            print "Add %s?" % selcondiment
+            sleep(1)
+            if selcondiment == "mayo":
+                print "Changing condiment..."
+                sleep(1)
+                selcondiment = choice(condiments)
+                valid = False
+        elif sel2modifier == "no":
+            print "No %s?" % selcondiment
+            sleep(1)
+            if selcondiment != "mayo":
+                print "Changing condiment.."
+                sleep(1)
+                selcondiment = choice(condiments)
+                valid = False
+        else:
+            valid = True
 
 def validate_vito():
     valid = False
@@ -112,6 +116,7 @@ def validate_vito():
     global selveggie
     global selmeat
     global selmodifier
+    global sel2modifier
     global selstyle
     print "Found a %s." % selsandwich
     sleep(1)
@@ -124,24 +129,6 @@ def validate_vito():
         if selbread != "French bread" and selstyle != "cut in half":
             selstyle = choice(styles)
             valid = False
-        else:
-            valid = True
-        if selmodifier == "add":
-            print "Add %s?" % selcondiment
-            sleep(1)
-            if selcondiment == "oil vinaigrette":
-                print "Changing condiment..."
-                sleep(1)
-                selcondiment = choice(condiments)
-                valid = False
-        elif selmodifier == "no":
-            print "No %s?" % selcondiment
-            sleep(1)
-            if selcondiment != "oil vinaigrette":
-                print "Changing condiment.."
-                sleep(1)
-                selcondiment = choice(condiments)
-                valid = False
         else:
             valid = True
         if selmodifier == "add":
@@ -162,6 +149,24 @@ def validate_vito():
                 valid = False
         else:
             valid = True
+        if sel2modifier == "add":
+            print "Add %s?" % selcondiment
+            sleep(1)
+            if selcondiment == "oil vinaigrette":
+                print "Changing condiment..."
+                sleep(1)
+                selcondiment = choice(condiments)
+                valid = False
+        elif sel2modifier == "no":
+            print "No %s?" % selcondiment
+            sleep(1)
+            if selcondiment != "oil vinaigrette":
+                print "Changing condiment.."
+                sleep(1)
+                selcondiment = choice(condiments)
+                valid = False
+        else:
+            valid = True
 
 def validate_veggiesub():
     valid = False
@@ -171,6 +176,7 @@ def validate_veggiesub():
     global selveggie
     global selmeat
     global selmodifier
+    global sel2modifier
     global selstyle
     print "Found a %s." % selsandwich
     sleep(1)
@@ -185,7 +191,7 @@ def validate_veggiesub():
             valid = False
         else:
             valid = True
-        if selmodifier == "add":
+        if sel2modifier == "add":
             print "Add %s?" % selcondiment
             sleep(1)
             if selcondiment in ["mayo", "avocado spread"]:
@@ -193,7 +199,7 @@ def validate_veggiesub():
                 sleep(1)
                 selcondiment = choice(condiments)
                 valid = False
-        elif selmodifier == "no":
+        elif sel2modifier == "no":
             print "No %s?" % selcondiment
             sleep(1)
             if selcondiment not in ["mayo", "avocado spread"]:
@@ -201,8 +207,7 @@ def validate_veggiesub():
                 sleep(1)
                 selcondiment = choice(condiments)
                 valid = False
-        else:
-            valid = True
+        print valid
         if selmodifier == "add":
             print "Add %s?" % selveggie
             sleep(1)
@@ -221,6 +226,7 @@ def validate_veggiesub():
                 valid = False
         else:
             valid = True
+        print valid
 
 def validate_tuna():
     valid = False
@@ -603,6 +609,8 @@ while i < 5:
     validity_checker()
     offer2 = "Try a %s %s %s on %s." % (selsandwich, selmodifier, selveggie, selbread)
     print offer2
-    # offer3 = "How about a %s %s %s %s %s?" % (selsandwich, selmodifier, selveggie, sel2modifier, selcondiment)
-    # print offer3
+    new_order()
+    validity_checker()
+    offer3 = "Try a %s %s %s %s %s." % (selsandwich, selmodifier, selveggie, sel2modifier, selcondiment)
+    print offer3
     i += 1
